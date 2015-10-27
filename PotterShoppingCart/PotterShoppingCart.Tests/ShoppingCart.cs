@@ -7,16 +7,21 @@ namespace PotterShoppingCart.Tests
 {
     class ShoppingCart
     {
+        private List<Book> _books = new List<Book>();
+
         internal void AddBooks(Book book)
         {
-            throw new NotImplementedException();
+            this._books.Add(book);
         }
 
         internal void Checkout()
         {
-            throw new NotImplementedException();
+            foreach (var book in this._books)
+            {
+                this.TotalAmount += book.Price;
+            }
         }
 
-        public object TotalAmount { get; set; }
+        public double TotalAmount { get; set; }
     }
 }

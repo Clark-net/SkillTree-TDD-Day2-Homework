@@ -8,5 +8,7 @@ namespace PotterShoppingCart.Tests
     class Book
     {
         public string Name { get; set; }
+
+        public double Price { get { return 100; } }
     }
 }
