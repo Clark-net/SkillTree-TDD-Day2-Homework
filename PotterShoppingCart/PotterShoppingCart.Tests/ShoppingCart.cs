@@ -21,9 +21,20 @@ namespace PotterShoppingCart.Tests
                 this.TotalAmount += book.Price;
             }
 
-            if (this._books.Count == 2)
+            var discountRatio = GetDiscountRatio();
+            this.TotalAmount *= discountRatio;
+        }
+
+        private double GetDiscountRatio()
+        {
+            switch (this._books.Count)
             {
-                this.TotalAmount *= 0.95;
+                case 2:
+                    return 0.95;
+                case 3:
+                    return 0.9;
+                default:
+                    return 1;
             }
         }
 
