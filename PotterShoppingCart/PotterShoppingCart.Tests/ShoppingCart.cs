@@ -20,6 +20,11 @@ namespace PotterShoppingCart.Tests
             {
                 this.TotalAmount += book.Price;
             }
+
+            if (this._books.Count == 2)
+            {
+                this.TotalAmount *= 0.95;
+            }
         }
 
         public double TotalAmount { get; set; }
