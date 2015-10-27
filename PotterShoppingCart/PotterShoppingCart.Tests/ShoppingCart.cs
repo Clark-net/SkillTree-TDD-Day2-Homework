@@ -9,9 +9,12 @@ namespace PotterShoppingCart.Tests
     {
         private List<Book> _books = new List<Book>();
 
-        internal void AddBooks(Book book)
+        internal void AddBooks(Book book, int count = 1)
         {
-            this._books.Add(book);
+            for (int i = 0; i < count; i++)
+            {
+                this._books.Add(book);
+            }
         }
 
         internal void Checkout()
