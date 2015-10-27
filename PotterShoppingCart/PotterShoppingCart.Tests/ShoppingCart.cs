@@ -19,18 +19,26 @@ namespace PotterShoppingCart.Tests
 
         internal void Checkout()
         {
-            foreach (var book in this._books)
-            {
-                this.TotalAmount += book.Price;
-            }
+            var checkoutBooks = new List<Book>();
 
-            var discountRatio = GetDiscountRatio();
-            this.TotalAmount *= discountRatio;
+            while (this._books.Count > 0)
+            {
+                var groupBooks = this._books.GroupBy(p => p.Name).Select(p => p.First());
+
+                var discountRatio = GetDiscountRatio(groupBooks.Count());
+                this.TotalAmount += groupBooks.Sum(p => p.Price) * discountRatio;
+
+                foreach (var book in groupBooks)
+                {
+                    checkoutBooks.Add(book);
+                    this._books.Remove(book);
+                }
+            }
         }
 
-        private double GetDiscountRatio()
+        private double GetDiscountRatio(int booksCount)
         {
-            switch (this._books.Count)
+            switch (booksCount)
             {
                 case 2:
                     return 0.95;
